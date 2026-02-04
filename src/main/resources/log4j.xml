@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+    <Appenders>
+
+        <!-- Console Logging -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %c{1} - %msg%n"/>
+        </Console>
+
+        <!-- File Logging -->
+        <RollingFile name="FileLogger"
+                     fileName="logs/revplay.log"
+                     filePattern="logs/revplay-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %c - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Application logs -->
+        <Logger name="com.revplay" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+
+        <!-- Root logs -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
